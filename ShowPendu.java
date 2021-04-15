@@ -54,6 +54,33 @@ public class ShowPendu extends JFrame {
             return mot;
         }
 
+        public boolean testerLettreInMot(String ChoixLettre, String mot){
+
+            int a = 0;
+
+            for (int i = 0; i < mot.length(); i++) {
+
+                if (mot.charAt(i)==ChoixLettre.charAt(0)) {
+
+                    a = 1;
+                    break;
+                    
+                }
+                else{
+                    a=0;
+                }
+
+            }
+
+            if (a==1) {
+                return  true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
 	
 		/**
 		* Launch the application.
@@ -114,6 +141,8 @@ public class ShowPendu extends JFrame {
 		btnOk.setBackground(new Color(0, 0, 205));
 		btnOk.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+
+            
 		
 		}
 		});
