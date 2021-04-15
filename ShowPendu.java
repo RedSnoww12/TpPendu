@@ -44,6 +44,8 @@ public class ShowPendu extends JFrame {
         public char l;
         public String lettre;
 
+        public String ancienne = "";
+
         public String choixMots() {
             
             int i =(int)(Math.random()*9);
@@ -94,6 +96,16 @@ public class ShowPendu extends JFrame {
                 }
             }
                 return motHidden;
+        }
+
+        public String recupererLettre(String ancienne){
+            boolean b= ancienne.contains(lettre);
+            if (b==true) {
+                System.out.println("Lettre déjà utilisé !");
+                JOptionPane.showInternalMessageDialog(null, "Lettre déjà utilisé !");
+                return "";
+            }
+            else return lettre;
         }
 
 	
@@ -164,9 +176,16 @@ public class ShowPendu extends JFrame {
 
             System.out.println(testerLettreInMot(lettre, mot));
 
-            afficherLettre(mot, lettre);
+            if (testerLettreInMot(lettre, mot)==true) {
+                afficherLettre(mot, lettre);
+            }
+            else{
+                recupererLettre(ancienne);
+                ancienne += recupererLettre(ancienne);
+                LeUtil.setText(ancienne);
+            }
                 
-            
+        
 		}
 		});
 		btnOk.setBounds(245, 153, 68, 20);
