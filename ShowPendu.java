@@ -35,11 +35,14 @@ public class ShowPendu extends JFrame {
 		private JTextField ChoixLettre;
 		private JLabel JLetoiles;
 		private JLabel LeUtil ;
-		private JLabel  Nbtry ;
+		private JLabel  nbHeart ;
 		private String[] mots={"liste","ratio","enclume","espadon","mario","aquarium",
         "souris","pasteque","animal","voiture"};
         private String motHidden = "";
         private String mot = "";
+        public int heart = 5;
+
+        public int nbGagne = 0;
 
         public char l;
         public String lettre;
@@ -93,6 +96,8 @@ public class ShowPendu extends JFrame {
 
                     motHidden = motHidden.substring(0,i)+lettre+motHidden.substring(i+1);
                     JLetoiles.setText(motHidden);
+
+                    nbGagne++;
                 }
             }
                 return motHidden;
@@ -107,6 +112,7 @@ public class ShowPendu extends JFrame {
             }
             else return lettre;
         }
+
 
 	
 		/**
@@ -183,8 +189,21 @@ public class ShowPendu extends JFrame {
                 recupererLettre(ancienne);
                 ancienne += recupererLettre(ancienne);
                 LeUtil.setText(ancienne);
+                heart--;
             }
-                
+
+            nbHeart.setText(""+heart);
+            ChoixLettre.setText("");
+
+            if (heart==0) {
+                JOptionPane.showInternalMessageDialog(null, "TA PERDUU BASABABSBSABB!!");
+                System.exit(1);
+            }
+
+            if (nbGagne==mot.length() && heart>0) {
+                JOptionPane.showInternalMessageDialog(null, "t fort bg ta win");
+                System.exit(1);
+            }
         
 		}
 		});
@@ -218,8 +237,8 @@ public class ShowPendu extends JFrame {
 		LeUtil.setBounds(20, 225, 141, 25);
 		contentPane.add(LeUtil);
 		
-		Nbtry = new JLabel();
-		Nbtry.setBounds(315, 225, 46, 14);
-		contentPane.add(Nbtry);
+		nbHeart = new JLabel(""+heart);
+		nbHeart.setBounds(315, 225, 46, 14);
+		contentPane.add(nbHeart);
 		}
 }
