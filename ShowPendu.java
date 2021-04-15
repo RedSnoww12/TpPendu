@@ -41,6 +41,9 @@ public class ShowPendu extends JFrame {
         private String motHidden = "";
         private String mot = "";
 
+        public char l;
+        public String lettre;
+
         public String choixMots() {
             
             int i =(int)(Math.random()*9);
@@ -79,6 +82,18 @@ public class ShowPendu extends JFrame {
                 return false;
             }
 
+        }
+
+        public String afficherLettre(String mot, String choixlettre){
+
+            for (int i = 0; i < mot.length(); i++) {
+                if (mot.charAt(i) == choixlettre.charAt(0)) {
+
+                    motHidden = motHidden.substring(0,i)+lettre+motHidden.substring(i+1);
+                    JLetoiles.setText(motHidden);
+                }
+            }
+                return motHidden;
         }
 
 	
@@ -142,8 +157,16 @@ public class ShowPendu extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 
+            l = ChoixLettre.getText().charAt(0);
+            lettre = String.valueOf(l);
+
+            testerLettreInMot(lettre, mot);
+
+            System.out.println(testerLettreInMot(lettre, mot));
+
+            afficherLettre(mot, lettre);
+                
             
-		
 		}
 		});
 		btnOk.setBounds(245, 153, 68, 20);
